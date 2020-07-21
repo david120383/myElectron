@@ -3,17 +3,33 @@
   <head>
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+<!--    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' ">-->
     <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <title>Hello World!</title>
+    <title>Ubibot</title>
+    <link rel="stylesheet" type="text/css" href="static/ubibot.css">
   </head>
   <body>
-    <h1>Hello World!</h1>
-    We are using Node.js <span id="node-version"></span>,
-    Chromium <span id="chrome-version"></span>,
-    and Electron <span id="electron-version"></span>.
-
-    <!-- You can also require other files to run in this process -->
-    <script src="./renderer.js"></script>
+    <button id="btnLoad">加载设备</button>
+    <button id="btnUpdateAll">批量升级最新固件</button>
+    <p id="loading">
+        <img src="./static/spin-1s-50px.gif" width="40px" >
+    </p>
+    <table>
+        <thead>
+        <tr>
+            <th>
+                <input id="chkSelectAll" type="checkbox" >
+            </th>
+            <th >名称</th>
+            <th >MAC</th>
+            <th >固件版本</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody id="mdpstbody">
+        </tbody>
+    </table>
+    <script src="static/jquery-2.2.3.min.js"></script>
+    <script src="static/renderer.js"></script>
   </body>
 </html>
