@@ -1,14 +1,15 @@
 document.getElementById("loading").style.display="none";
 document.getElementById("btnLoad").addEventListener("click", selectDevice);
 document.getElementById("btnUpdateAll").addEventListener("click", updateAllFirmware);
-document.getElementById("chkSelectAll").addEventListener("click", checkAll);
+document.getElementById("btnSelectAll").addEventListener("click", checkAll);
 
 function checkAll() {
-    if($('#chkSelectAll').prop("checked")) {
-        $('.check').prop("checked", true);
-    }else{
-        $('.check').prop('checked',false);
-    }
+    $('.check').prop("checked", true);
+    // if($('#chkSelectAll').prop("checked")) {
+    //     $('.check').prop("checked", true);
+    // }else{
+    //     $('.check').prop('checked',false);
+    // }
 }
 function updateAllFirmware() {
     const checkList = $('.check');
@@ -95,7 +96,8 @@ function selectDevice() {
                             if(d.result == "success"){
                                 $('#firmware' + d.name ).html(d.firmware);
                                 if(d.status == "success"){
-                                    $('#status' + d.name + '1').html("上次升级成功时间"+ d.end);
+                                    let endTime = dateFormart(d.end);
+                                    $('#status' + d.name + '1').html("上次升级成功时间"+ endTime);
                                     $('#status' + d.name + '1').show();
                                 }else if(d.status == "failed"){
                                     $('#status' + d.name + '2').show();
@@ -153,4 +155,21 @@ function updateFirmware(name) {
             console.log(err);
         }
     });
+}
+function dateFormart(d) {
+    let thisdate = new Date(d);
+    let fmt = "yyyy-MM-dd hh:mm:ss";
+    const o = {
+        "M+": thisdate.getMonth() + 1, //月份
+        "d+": thisdate.getDate(), //日
+        "h+": thisdate.getHours(), //小时
+        "m+": thisdate.getMinutes(), //分
+        "s+": thisdate.getSeconds(), //秒
+        "q+": Math.floor((thisdate.getMonth() + 3) / 3), //季度
+        "S": thisdate.getMilliseconds() //毫秒
+    };
+    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (thisdate.getFullYear() + "").substr(4 - RegExp.$1.length));
+    for (var k in o)
+        if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+    return fmt;
 }

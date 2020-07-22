@@ -3,16 +3,18 @@ html { margin: 0; padding: 0; border: 0; }
 body {
     font-family: 'Raleway', sans-serif;
     background-color: #ffffff;
-    text-align: center;
+    /*text-align: center;*/
+    font-size: 15px;
 }
 button {
-    font-size: 12px;
+    font-size: 15px;
     color: #ffffff;
     /*color: inherit; */
     margin: 20px auto;
     border: 0px;
     background-color: #337ab7;
-    height: 40px;
+    height: 50px;
+    width: 200px;
     padding: 0 30px;
     border-radius: 4px;
     font-weight: 700;
@@ -22,12 +24,13 @@ button {
 }
 button:hover { background: #286090; }
 table{
-    width:95%;
+    width:100%;
     margin:0 auto;
     border-collapse:collapse;
+    text-align: center;
 }
 table thead {
-    background-color:#f2f2f2;
+    background-color:#e9e9e9;
     color: #000;
     text-align:center;
 }

@@ -9,21 +9,21 @@
     <link rel="stylesheet" type="text/css" href="static/ubibot.css">
   </head>
   <body>
-    <button id="btnLoad">加载设备</button>
-    <button id="btnUpdateAll">批量升级最新固件</button>
+    <div>
+        <button id="btnLoad">加载设备</button>
+        <button style="float: right;" id="btnUpdateAll">批量升级最新固件</button>
+    </div>
     <p id="loading">
-        <img src="./static/spin-1s-50px.gif" width="40px" >
+        <img style="text-align: center;" src="./static/spin-1s-50px.gif" width="40px" >
     </p>
     <table>
         <thead>
         <tr>
-            <th>
-                <input id="chkSelectAll" type="checkbox" >
-            </th>
-            <th >名称</th>
-            <th >MAC</th>
-            <th >固件版本</th>
-            <th></th>
+            <th style="width:15%;" ><button id="btnSelectAll" style="width:100px;">全选</button></th>
+            <th style="width:15%;" >名称</th>
+            <th style="width:15%;" >MAC</th>
+            <th style="width:15%;" >固件版本</th>
+            <th style="width:40%;" ></th>
         </tr>
         </thead>
         <tbody id="mdpstbody">
