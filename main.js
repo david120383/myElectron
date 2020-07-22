@@ -6,21 +6,23 @@ const path = require('path')
 function createWindow () {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    // title:'Ubibot111',
+    // icon:path.join(__dirname, 'static/icon_180.png'),
+    // width: 800,
+    // height: 600,
     resizable: false,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     }
   });
-  mainWindow.webContents.openDevTools();
   Menu.setApplicationMenu(null);
+  // console.log(path.join(__dirname, 'static/icon_180.jpg'));
 
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 }
 
 // This method will be called when Electron has finished

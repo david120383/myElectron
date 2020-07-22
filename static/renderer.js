@@ -103,7 +103,7 @@ function selectDevice() {
                                     $('#status' + d.name + '3').html("正在升级");
                                     $('#status' + d.name + '3').show();
                                     // $('#status' + d.name + '4').hide();
-                                }else if(d.status == "waitting"){
+                                }else if(d.status == "waiting"){
                                     $('#status' + d.name + '3').html("正在等待升级");
                                     $('#status' + d.name + '3').show();
                                     // $('#status' + d.name + '4').hide();
