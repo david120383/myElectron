@@ -5,7 +5,8 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "electronmac": "electron-builder build --mac"
+    "electronmac": "electron-builder build --mac",
+    "electronlinux": "electron-builder build --linux"
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
