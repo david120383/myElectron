@@ -1,0 +1,38 @@
+{
+  "productName": "UbiBot Bluetooth DFU",
+  "copyright": "david",
+  "directories": {
+    "output": "release/"
+  },
+  "files": [
+    "**/*",
+    "!LICENSE.md",
+    "!package.json",
+    "!package-lock.json"
+  ],
+  "win": {
+    "icon": "static/favicon.256x256.png",
+    "target": [
+      "nsis"
+    ]
+  },
+  "mac": {
+    "icon": "static/favicon.512x512.png",
+    "target": [
+      "dmg"
+    ]
+  },
+  "linux": {
+    "icon": "static",
+    "target": [
+      "AppImage"
+    ]
+  },
+  "nsis": {
+    "oneClick": false,
+    "perMachine": false,
+    "createDesktopShortcut": "always",
+    "shortcutName": "UbiBot Desktop",
+    "allowToChangeInstallationDirectory": false
+  }
+}

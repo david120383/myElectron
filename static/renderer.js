@@ -1,3 +1,6 @@
+let urlGetList = 'http://localhost:8081/list2';
+let urlCheckFirmware = 'http://localhost:8081/checkdfustatus?name=';
+
 document.getElementById("loading").style.display="none";
 document.getElementById("btnLoad").addEventListener("click", selectDevice);
 document.getElementById("btnUpdateAll").addEventListener("click", updateAllFirmware);
@@ -45,11 +48,11 @@ function updateAllFirmware() {
 }
 function selectDevice() {
     $.ajax({
-        url:'http://localhost:8081/list2',
+        url: urlGetList,
         type:'GET',
         dataType:'json',
         beforeSend: function(){
-            // $("#loading").show();
+            $("#loading").show();
         },
         complete: function(){
             $("#loading").hide();
@@ -67,55 +70,49 @@ function selectDevice() {
                     htmlDetail += '    <td>' + obj.mac + '</td>';
                     htmlDetail += '    <td id="firmware' + obj.Address + '"></td>';
                     htmlDetail += '    <td>';
-                    htmlDetail += '        <p id="status' + obj.Address + '0" style="display:none;">';
-                    htmlDetail += '        </p>';
-                    htmlDetail += '        <p id="status' + obj.Address + '1" style="display:none;">';
-                    htmlDetail += '        上次升级成功<br>';
-                    htmlDetail += '        </p>';
-                    htmlDetail += '        <p id="status' + obj.Address + '2" style="display:none;">';
-                    htmlDetail += '        上次升级失败<br>';
-                    htmlDetail += '        </p>';
-                    htmlDetail += '        <p id="status' + obj.Address + '3" style="display:none;">';
-                    htmlDetail += '        正在升级<br>';
-                    htmlDetail += '        </p>';
-                    htmlDetail += '        <button class="btnUpdate" name="' + obj.Address + '" id="status' + obj.Address + '4" >升级最新固件</button>';
+                    htmlDetail += '        <p id="status' + obj.Address + '" style="display:none;"></p>';
+                    htmlDetail += '        <p id="status' + obj.Address + 'img" style="display:none;"><img src="./static/spin-1s-50px.gif" width="40px" ></p>';
+                    htmlDetail += '        <button class="btnUpdate" name="' + obj.Address + '" id="btnUpdate' + obj.Address + '" >升级最新固件</button>';
                     htmlDetail += '    </td>';
                     htmlDetail += '</tr>';
                 }
                 $('#mdpstbody').html(htmlDetail);
                 for(let j=0; j<data.length; j++){
                     const objCheck = JSON.parse(data[j].details);
-                    $('#status' + objCheck.Address + '4').click(function () {
+                    $('#btnUpdate' + objCheck.Address ).click(function () {
+                        console.log(objCheck.Address);
                         updateFirmware(objCheck.Address);
                     });
                     $.ajax({
-                        url: 'http://localhost:8081/checkdfustatus?name=' + objCheck.Address,
+                        url: urlCheckFirmware + objCheck.Address,
                         type: 'GET',
                         dataType: 'json',
                         success: function (d) {
                             if(d.result == "success"){
                                 $('#firmware' + d.name ).html(d.firmware);
-                                if(d.status == "success"){
-                                    let endTime = dateFormart(d.end);
-                                    $('#status' + d.name + '1').html("上次升级成功时间"+ endTime);
-                                    $('#status' + d.name + '1').show();
+                                if(d.status == "success" ){
+                                    let endTime = dateFormat(d.end);
+                                    $('#status' + d.name ).html("上次升级成功时间"+ endTime);
+                                    $('#status' + d.name ).show();
                                 }else if(d.status == "failed"){
-                                    $('#status' + d.name + '2').show();
+                                    let endTime = dateFormat(d.end);
+                                    $('#status' + d.name ).html("上次升级失败时间"+ endTime);
+                                    $('#status' + d.name ).show();
                                 }else if(d.status == "doing"){
-                                    $('#status' + d.name + '3').html("正在升级");
-                                    $('#status' + d.name + '3').show();
-                                    // $('#status' + d.name + '4').hide();
+                                    $('#status' + d.name ).html("正在升级");
+                                    $('#status' + d.name ).show();
+                                    $('#status' + d.name + 'img').show();
                                 }else if(d.status == "waiting"){
-                                    $('#status' + d.name + '3').html("正在等待升级");
-                                    $('#status' + d.name + '3').show();
-                                    // $('#status' + d.name + '4').hide();
+                                    $('#status' + d.name ).html("正在等待升级");
+                                    $('#status' + d.name ).show();
+                                    $('#status' + d.name + 'img').show();
                                 }
                             }else if(d.result == "failed"){
                                 $('#status' + d.name + '0').show();
                             }
                         },
                         error: function (err) {
-                            console.log(err);
+                            console.log(`checkdfustatus err:${err}`);
                         }
                     });
                 }
@@ -124,7 +121,7 @@ function selectDevice() {
             }
         },
         error: function (err) {
-            console.log(err);
+            console.log(`list2 err:${err}`);
         }
     });
 }
@@ -156,7 +153,7 @@ function updateFirmware(name) {
         }
     });
 }
-function dateFormart(d) {
+function dateFormat(d) {
     let thisdate = new Date(d);
     let fmt = "yyyy-MM-dd hh:mm:ss";
     const o = {
