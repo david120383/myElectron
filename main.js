@@ -10,7 +10,7 @@ function createWindow () {
     icon:path.join(__dirname, 'static/icon_180.png'),
     width: 1200,
     height: 800,
-    fullscreen: true,
+    // fullscreen: true,
     resizable: false,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
