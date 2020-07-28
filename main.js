@@ -8,9 +8,9 @@ function createWindow () {
   const mainWindow = new BrowserWindow({
     title:'Ubibot111',
     icon:path.join(__dirname, 'static/icon_180.png'),
-    // width: 800,
-    // height: 600,
-    // fullscreen: true,
+    width: 1200,
+    height: 800,
+    fullscreen: true,
     resizable: false,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
