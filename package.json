@@ -17,7 +17,7 @@
     "electronmac1": "npm run build && electron-builder build --mac",
     "electronmac2": "electron-builder build --mac",
     "electronlinux": "npm run build && electron-builder build --linux",
-    "electronlinux2": "electron-builder build --linux"
+    "electronlinux2": "electron-builder build --dir --armv7l --linux deb"
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
