@@ -1,8 +1,17 @@
 {
   "name": "electron-quick-start",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "UbiTrack DFU App",
+  "homepage": "https://github.com/david120383/myElectron",
+  "author": {
+    "name": "david",
+    "email": "wangwei@cloudforce.cn"
+  },
+  "keywords": [
+    "ubitrack"
+  ],
   "main": "main.js",
+  "private": true,
   "scripts": {
     "git:pull": "git pull && git submodule foreach git pull origin master",
     "postinstall": "npm run postinstall:electron && electron-builder install-app-deps",
@@ -19,16 +28,6 @@
     "electronlinux": "npm run build && electron-builder build --linux",
     "electronlinux2": "electron-builder build --dir --armv7l --linux deb"
   },
-  "repository": "https://github.com/electron/electron-quick-start",
-  "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
-  ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^9.1.0",
     "electron-builder": "^22.7.0"
