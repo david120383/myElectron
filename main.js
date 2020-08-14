@@ -6,7 +6,7 @@ const path = require('path')
 function createWindow () {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    title:'Ubibot111',
+    title:'Ubibot',
     icon:path.join(__dirname, 'static/icon_180.png'),
     width: 1200,
     height: 800,

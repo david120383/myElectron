@@ -13,6 +13,7 @@
     "install": "electron-rebuild",
     "buildbak": "npm run postinstall:electron && npm run electron:serve-tsc",
     "build": "npm run electron:serve-tsc",
+    "electron:serve-tsc": "tsc -p tsconfig-serve.json",
     "electronmac": "electron-builder build --mac",
     "electronlinux": "npm run build && electron-builder build --linux"
   },
