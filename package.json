@@ -29,7 +29,7 @@
     "electronlinux2": "electron-builder build --dir --armv7l --linux deb"
   },
   "devDependencies": {
-    "electron": "^9.1.0",
+    "electron": "^9.4.0",
     "electron-builder": "^22.7.0"
   }
 }
